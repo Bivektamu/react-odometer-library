@@ -1,0 +1,45 @@
+.odometer {
+  margin-top: 30vh;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .wrapper {
+    // display: inline-block;
+    // width: 80px;
+    // height: 80px;
+    // overflow: hidden;
+    font-size: 80px;
+    position: relative;
+    // padding: 40px 80px;
+    .digit {
+      position: absolute;
+    //   animation-name: move;
+      animation-duration: 2s;
+      animation-timing-function: ease-out;
+      display: block;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    //   transform: translateY(80px);
+    transform: rotate(-180deg);
+      display: flex;
+      flex-direction: column;
+      span {
+    //   padding:40px 0;
+      display: block;
+      transform: scale(-1);
+      }
+
+      @keyframes move {
+        0% {
+          transform: translateY(100%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
