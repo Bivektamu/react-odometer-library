@@ -1,48 +1,47 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Odometer.scss";
 
-const Odometer = ({ num }) => {
-  const ref = useRef(null);
-  const [odoNum, setOdoNum] = useState([]);
+const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
+  const [odometerNum, setOdometerNum] = useState([]);
   const [oc, setOc] = useState();
-  let digit = 0;
 
   useEffect(() => {
     if (num) {
-      let val = num;
-      let c = odoNum;
+      let currNumState = odometerNum;
       do {
-        let a = [];
-        if (val > 0) {
+        let digitToInsert = [];
+        if (num > 0) {
+          let StringNum = String(num);
 
-          let cVal = String(val)
-          
-          let iteratorValue = (cVal.length - 1)*10 + val % 10
+          let iteratorVal = (StringNum.length - 1) * 10 + (num % 10);
 
-          for (let i = 0; i <= iteratorValue; i++) {
-            a.push(i % 10);
+          for (let i = 0; i <= iteratorVal; i++) {
+            digitToInsert.push(i % 10);
           }
         } else {
-          a.push(0);
+          digitToInsert.push(0);
         }
-        let b = [...c, a];
-        // setOdoNum(b)
-        c = b;
-        val = parseInt(val / 10);
-      } while (val > 0);
+         currNumState = [...currNumState, digitToInsert];
+        num = parseInt(num / 10);
+      } while (num > 0);
 
-      setOdoNum(c);
+      setOdometerNum(currNumState);
     }
   }, [""]);
 
   useEffect(() => {
-    if (odoNum.length > 0) {
-      const cont = odoNum.reverse().map((item, index) => {
-        console.log(odoNum)
+    if (odometerNum.length > 0) {
+      const contentToRender = odometerNum.reverse().map((item, index) => {
         return (
-          <div className="wrapper" key={index}>
+          <div className="digitWrapper" key={index}>
             &nbsp;&nbsp;
-            <div className="digit">
+            <div
+              className="digit"
+              style={{
+                animationDuration: `${animationSpeed}s`,
+                animationTimingFunction: `${animationTimingStyles}`,
+              }}
+            >
               {item.map((ele, key) => {
                 return <span key={key}>{ele}</span>;
               })}
@@ -50,14 +49,29 @@ const Odometer = ({ num }) => {
           </div>
         );
       });
-      setOc(cont);
+      setOc(contentToRender);
     }
-  }, [odoNum]);
+  }, [odometerNum]);
+
+
+  window.onload = function () {
+    setTimeout(() => {
+      const odoMs = Array.from(document.querySelectorAll(".odometer"));
+      odoMs.map((ele) => {
+        const digitWrapper = ele.querySelector(".digitWrapper");
+        if (!digitWrapper) return;
+        const hh = digitWrapper.clientHeight;
+
+        const digi = Array.from(ele.querySelectorAll(".digit"));
+        digi.map((item) => {
+          item.style.marginBottom = `${hh}px`;
+        });
+      });
+    }, 10);
+  };
 
   return (
-    <div className="odometer" ref={ref}>
-      {oc}
-    </div>
+    <div className={classN ? classN + " odometer" : "odometer"}>{oc && oc}</div>
   );
 };
 

@@ -4,7 +4,7 @@ import { Odometer } from './Odometer';
 function App() {
   return (
     <div className="App">
-      <Odometer num = '856248962587456' />
+      <Odometer num = '3426' classN="odo1" animationSpeed={3} animationTimingStyles = 'cubic-bezier(0.45, 0, 0.55, 1)' />
     </div>
   );
 }
