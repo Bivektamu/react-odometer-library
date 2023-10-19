@@ -32,6 +32,7 @@ const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
   useEffect(() => {
     if (odometerNum.length > 0) {
       const contentToRender = odometerNum.reverse().map((item, index) => {
+        const reverseItem = item.reverse()
         return (
           <div className="digitWrapper" key={index}>
             &nbsp;&nbsp;
@@ -42,7 +43,7 @@ const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
                 animationTimingFunction: `${animationTimingStyles}`,
               }}
             >
-              {item.map((ele, key) => {
+              {reverseItem.map((ele, key) => {
                 return <span key={key}>{ele}</span>;
               })}
             </div>
