@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Odometer.scss";
 
-const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
+const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, gap }) => {
   const [odometerNum, setOdometerNum] = useState([]);
   const [oc, setOc] = useState();
+  const [classes, setClasses] = useState(classN)
 
   useEffect(() => {
     if (num) {
@@ -27,12 +28,16 @@ const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
 
       setOdometerNum(currNumState);
     }
+
+    if(reverse) {
+      setClasses(classes+' reverse')
+    }
   }, [""]);
 
   useEffect(() => {
     if (odometerNum.length > 0) {
       const contentToRender = odometerNum.reverse().map((item, index) => {
-        const reverseItem = item.reverse()
+        const eachItem = reverse? item: item.reverse()
         return (
           <div className="digitWrapper" key={index}>
             &nbsp;&nbsp;
@@ -40,10 +45,10 @@ const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
               className="digit"
               style={{
                 animationDuration: `${animationSpeed}s`,
-                animationTimingFunction: `${animationTimingStyles}`,
+                animationTimingFunction: `${animationTimingStyles}`
               }}
             >
-              {reverseItem.map((ele, key) => {
+              {eachItem.map((ele, key) => {
                 return <span key={key}>{ele}</span>;
               })}
             </div>
@@ -59,6 +64,9 @@ const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
     setTimeout(() => {
       const odoMs = Array.from(document.querySelectorAll(".odometer"));
       odoMs.map((ele) => {
+        if((ele.classList.value).indexOf('reverse') > -1) {
+          return
+        }
         const digitWrapper = ele.querySelector(".digitWrapper");
         if (!digitWrapper) return;
         const hh = digitWrapper.clientHeight;
@@ -72,7 +80,7 @@ const Odometer = ({ num, animationSpeed, animationTimingStyles, classN }) => {
   };
 
   return (
-    <div className={classN ? classN + " odometer" : "odometer"}>{oc && oc}</div>
+    <div className={classes ? classes + " odometer" : "odometer"} style={gap && {columnGap:`${gap}px` }} >{oc && oc}</div>
   );
 };
 
