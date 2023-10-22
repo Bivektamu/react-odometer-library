@@ -3,11 +3,16 @@
   align-items: center;
   justify-content: center;
   column-gap: 30px;
+  &.odo1 {
+    font-size: 30px;
+  }
+  &.odo2 {
+    font-size: 60px;
+  }
 
   .digitWrapper {
     overflow: hidden;
     position: relative;
-    font-size: 40px;
 
     .digit {
       position: absolute;
@@ -25,7 +30,6 @@
 
       span {
         display: block;
-
       }
 
       @keyframes move {

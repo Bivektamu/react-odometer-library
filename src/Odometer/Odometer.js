@@ -9,12 +9,13 @@ const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, 
   useEffect(() => {
     if (num) {
       let currNumState = odometerNum;
+      let tempNum = num
       do {
         let digitToInsert = [];
-        if (num > 0) {
-          let StringNum = String(num);
+        if (tempNum > 0) {
+          let StringNum = String(tempNum);
 
-          let iteratorVal = (StringNum.length - 1) * 10 + (num % 10);
+          let iteratorVal = (StringNum.length - 1) * 10 + (tempNum % 10);
 
           for (let i = 0; i <= iteratorVal; i++) {
             digitToInsert.push(i % 10);
@@ -23,8 +24,8 @@ const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, 
           digitToInsert.push(0);
         }
          currNumState = [...currNumState, digitToInsert];
-        num = parseInt(num / 10);
-      } while (num > 0);
+         tempNum = parseInt(tempNum / 10);
+      } while (tempNum > 0);
 
       setOdometerNum(currNumState);
     }
@@ -32,7 +33,7 @@ const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, 
     if(reverse) {
       setClasses(classes+' reverse')
     }
-  }, [""]);
+  }, []);
 
   useEffect(() => {
     if (odometerNum.length > 0) {
@@ -44,7 +45,7 @@ const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, 
             <div
               className="digit"
               style={{
-                animationDuration: `${animationSpeed}s`,
+                animationDuration: animationSpeed? `${animationSpeed}s` : '4s',
                 animationTimingFunction: `${animationTimingStyles}`
               }}
             >
@@ -65,23 +66,32 @@ const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, 
       const odoMs = Array.from(document.querySelectorAll(".odometer"));
       odoMs.map((ele) => {
         if((ele.classList.value).indexOf('reverse') > -1) {
-          return
+          return ''
         }
         const digitWrapper = ele.querySelector(".digitWrapper");
-        if (!digitWrapper) return;
+        if (!digitWrapper) return '';
         const hh = digitWrapper.clientHeight;
 
         const digi = Array.from(ele.querySelectorAll(".digit"));
         digi.map((item) => {
           item.style.marginBottom = `${hh}px`;
+          return ''
         });
+        return ''
       });
     }, 10);
   };
 
-  return (
-    <div className={classes ? classes + " odometer" : "odometer"} style={gap && {columnGap:`${gap}px` }} >{oc && oc}</div>
-  );
+  if(!num) {
+    console.error('Num props on Odometer can not be empty')
+    return ''
+  }
+
+  if(oc) {
+    return (
+      <div className={classes ? classes + " odometer" : "odometer"} style={gap && {columnGap:`${gap}px` }} >{oc}</div>
+    )
+  }
 };
 
 export default Odometer;

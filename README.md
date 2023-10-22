@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# React Simple Odometer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A lightweight and flexible odmoter library that allows user to build simple functional odometer. This react library is built using react.js, scss and adheres to latest ECMAScript specs. This library is intended to be used along with react.js.
 
-## Available Scripts
+Supports IE10+, all major browsers and mobile devices. You can view live demo [here](https://simpleodometerdemo.netlify.app/). If you have any issues, please follow this [link](https://github.com/Bivektamu/react-odometer-library/issues).
 
-In the project directory, you can run:
+## Inspiration
 
-### `npm start`
+Originally, this was a pure vanilla js module which I had developed and used in many projects for my clients. I tried to look for similar package in npm library for my react project but I couldn't find it so I simply created it myself. I have added options to have more control over odomter such as number to display, custom class name for control on styling, animation speed, styles and gaps.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+You can install this package using below command:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install react-simple-odometer
+```
+or
+```bash
+npm install --save-dev react-simple-odometer
+```
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Note**: You are to use this library along with react.js, since it is a pure react component under the hood.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Import the Odometer component library in your desired react component using following code:
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+import {Odometer} from 'react-simple-odometer'
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Then, simply use it with below code.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<Odometer num = '9384756' classN="odo1" animationSpeed={3} animationTimingStyles = 'cubic-bezier(0.45, 0, 0.55, 1)' gap={20} />
 
-### Code Splitting
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Props || Options
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Below are the options to control Slider component as per requirement:
 
-### Making a Progressive Web App
+**`num {type: integar || string}`**: number to display **`*Required`**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**`classN {type: string}`**: custom class name passed to ondometer for styling
 
-### Advanced Configuration
+**`animationSpeed {type: integar}`**: sets the speed of animation, in seconds **`Default" 4 || 4s`**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**`animationTimingStyles {type:string}`** : sets easing of animation. You can have pass any easing value such as ease, ease in, out, or any cubic beizer values. **`Default: cubic-bezier(0.45, 0, 0.55, 1)`**
 
-### Deployment
+**`reverse {type: boolean}`**: sets the animation to reverse **`Default: false`**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## App Info
+### Author
+Bivek Jang Gurung

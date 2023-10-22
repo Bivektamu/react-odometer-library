@@ -1,5 +1,5 @@
 {
-  "name": "odometer-library",
+  "name": "react-simple-odometer",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
