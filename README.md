@@ -47,15 +47,15 @@ Then, simply use it with below code.
 
 ## Props || Options
 
-Below are the options to control Slider component as per requirement:
+Below are the options to odometer component as per requirement:
 
 **`num {type: integar || string}`**: number to display **`*Required`**
 
-**`classN {type: string}`**: custom class name passed to ondometer for styling
+**`classN {type: string}`**: custom class passed to odometer for styling
 
 **`animationSpeed {type: integar}`**: sets the speed of animation, in seconds **`Default" 4 || 4s`**
 
-**`animationTimingStyles {type:string}`** : sets easing of animation. You can have pass any easing value such as ease, ease in, out, or any cubic beizer values. **`Default: cubic-bezier(0.45, 0, 0.55, 1)`**
+**`animationTimingStyles {type:string}`** : sets easing of animation. You can have pass any easing value such as linear, ease out, ease in, or any cubic beizer values. **`Default: cubic-bezier(0.45, 0, 0.55, 1)`**
 
 **`reverse {type: boolean}`**: sets the animation to reverse **`Default: false`**
 
