@@ -2,14 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: 30px;
-  &.odo1 {
-    font-size: 30px;
-  }
-  &.odo2 {
-    font-size: 60px;
-  }
-
   .digitWrapper {
     overflow: hidden;
     position: relative;
@@ -27,6 +19,7 @@
       display: flex;
       flex-direction: column;
       transform: translateY(100%);
+      font-size: inherit;
 
       span {
         display: block;

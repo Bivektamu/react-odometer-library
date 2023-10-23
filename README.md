@@ -53,6 +53,8 @@ Below are the options to odometer component as per requirement:
 
 **`classN {type: string}`**: custom class passed to odometer for styling
 
+**`fontSize {type: integar}`**: font size for numbers in odometer **`*Important Note: font size is applied to digitWrapper element. If you are custom styling numbers then please apply to digitWrapper element`**
+
 **`animationSpeed {type: integar}`**: sets the speed of animation, in seconds **`Default" 4 || 4s`**
 
 **`animationTimingStyles {type:string}`** : sets easing of animation. You can have pass any easing value such as linear, ease out, ease in, or any cubic beizer values. **`Default: cubic-bezier(0.45, 0, 0.55, 1)`**

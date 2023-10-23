@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Odometer.scss";
 
-const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, gap }) => {
+const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, gap, fontSize }) => {
   const [odometerNum, setOdometerNum] = useState([]);
   const [oc, setOc] = useState();
   const [classes, setClasses] = useState(classN)
@@ -40,7 +40,7 @@ const Odometer = ({classN, num, animationSpeed, animationTimingStyles, reverse, 
       const contentToRender = odometerNum.reverse().map((item, index) => {
         const eachItem = reverse? item: item.reverse()
         return (
-          <div className="digitWrapper" key={index}>
+          <div className="digitWrapper" key={index} style={{fontSize: fontSize?`${fontSize}px`:'18px'}}>
             &nbsp;&nbsp;
             <div
               className="digit"
